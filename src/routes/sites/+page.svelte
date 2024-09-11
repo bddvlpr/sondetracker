@@ -15,47 +15,58 @@
   });
 </script>
 
-<div class="overflow-x-auto">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Id</th>
-        <th>Map</th>
-        <th>Name</th>
-        <th>Launch times</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      {#each elements as [id, { station_name, position }]}
-        {@const latLng = getLatLng(position ?? [0, 0])}
+{#key page}
+  <div class="overflow-x-auto">
+    <table class="table">
+      <thead>
         <tr>
-          <td>
-            #{id}
-          </td>
-          <td>
-            <div class="avatar">
-              <div class="h-48 w-48">
-                <Map center={latLng} zoom={12} zoomControl={false}>
-                  <CircleMarker radius={7} {latLng} />
-                </Map>
-              </div>
-            </div>
-          </td>
-          <td class="min-w-56">
-            {station_name} <br />
-            <span class="badge badge-primary badge-sm">{latLng.join(' ')}</span>
-          </td>
-          <td>undefined</td>
-          <th>
-            <a
-              class="btn btn-ghost btn-xs"
-              href="https://maps.apple.com/?ll={latLng}"
-              target="_blank">Map</a
-            >
-          </th>
+          <th>Id</th>
+          <th>Map</th>
+          <th>Name</th>
+          <th>Launch times</th>
+          <th></th>
         </tr>
-      {/each}
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        {#each elements as [id, { station_name, position }]}
+          {@const latLng = getLatLng(position ?? [0, 0])}
+          <tr>
+            <td>
+              #{id}
+            </td>
+            <td>
+              <div class="avatar">
+                <div class="h-48 w-48">
+                  <Map center={latLng} zoom={12} zoomControl={false}>
+                    <CircleMarker radius={7} {latLng} />
+                  </Map>
+                </div>
+              </div>
+            </td>
+            <td class="min-w-56">
+              {station_name} <br />
+              <span class="badge badge-primary badge-sm">{latLng.join(' ')}</span>
+            </td>
+            <td>undefined</td>
+            <th>
+              <a
+                class="btn btn-ghost btn-xs"
+                href="https://maps.apple.com/?ll={latLng}"
+                target="_blank">Map</a
+              >
+            </th>
+          </tr>
+        {/each}
+      </tbody>
+    </table>
+  </div>
+{/key}
+<div class="w-fit mx-auto">
+  <div>
+    <div class="join">
+      <button onclick={() => page--} disabled={page <= 0} class="join-item btn">«</button>
+      <button class="join-item btn">Page {page + 1}</button>
+      <button onclick={() => page++} class="join-item btn">»</button>
+    </div>
+  </div>
 </div>

@@ -1,4 +1,5 @@
 import type { Listener, Site } from './api';
+
 import { fetchListeners } from './api/listeners';
 import { fetchSites } from './api/sites';
 
@@ -22,7 +23,7 @@ export const getListeners = () => listeners;
 export const getSites = () => sites;
 
 export const updateListener = (listener: Listener) => {
-  let index = listeners.findIndex((l) => l.uploader_callsign === listener.uploader_callsign);
+  const index = listeners.findIndex((l) => l.uploader_callsign === listener.uploader_callsign);
   if (index >= 0) {
     listeners[index] = listener;
   } else {

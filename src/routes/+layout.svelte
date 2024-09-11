@@ -1,13 +1,13 @@
 <script lang="ts">
   import Tooltip from '$lib/components/tooltip.svelte';
+  import { connectSocket } from '$lib/socket.svelte';
+  import { refreshListeners, refreshSites } from '$lib/telemetry.svelte';
   import Antenna from 'lucide-svelte/icons/antenna';
   import ArrowUpFromLine from 'lucide-svelte/icons/arrow-up-from-line';
   import Map from 'lucide-svelte/icons/map';
   import Radio from 'lucide-svelte/icons/radio';
 
   import '../app.pcss';
-  import { refreshListeners, refreshSites } from '$lib/telemetry.svelte';
-  import { connectSocket } from '$lib/socket.svelte';
 
   const anchors = [
     {

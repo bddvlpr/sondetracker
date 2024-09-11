@@ -36,8 +36,8 @@
           <td>
             <div class="avatar">
               <div class="h-48 w-48">
-                <Map zoom={12} zoomControl={false} center={latLng}>
-                  <CircleMarker {latLng} radius={7} />
+                <Map center={latLng} zoom={12} zoomControl={false}>
+                  <CircleMarker radius={7} {latLng} />
                 </Map>
               </div>
             </div>
@@ -49,9 +49,9 @@
           <td>undefined</td>
           <th>
             <a
-              target="_blank"
+              class="btn btn-ghost btn-xs"
               href="https://maps.apple.com/?ll={latLng}"
-              class="btn btn-ghost btn-xs">Map</a
+              target="_blank">Map</a
             >
           </th>
         </tr>

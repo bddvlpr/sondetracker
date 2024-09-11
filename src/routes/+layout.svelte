@@ -1,6 +1,7 @@
 <script lang="ts">
   import Tooltip from '$lib/components/tooltip.svelte';
   import Antenna from 'lucide-svelte/icons/antenna';
+  import ArrowUpFromLine from 'lucide-svelte/icons/arrow-up-from-line';
   import Map from 'lucide-svelte/icons/map';
   import Radio from 'lucide-svelte/icons/radio';
 
@@ -16,6 +17,11 @@
       tooltip: 'Sondes',
       component: Radio,
       href: '/sondes'
+    },
+    {
+      tooltip: 'Sites',
+      component: ArrowUpFromLine,
+      href: '/sites'
     },
     {
       tooltip: 'Stations',

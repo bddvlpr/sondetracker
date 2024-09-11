@@ -1000,7 +1000,7 @@ export interface components {
         };
         amateur_query_results_format: {
             serial?: {
-                datetime?: components["schemas"]["amateur_telemetry_format"];
+                [key: string]: components["schemas"]["amateur_telemetry_format"];
             };
         };
         amateur_query_full_results_format: components["schemas"]["amateur_telemetry_format"][];
@@ -1141,7 +1141,7 @@ export interface components {
         };
         sonde_query_results_format: {
             serial?: {
-                datetime?: components["schemas"]["telemetry_format"];
+                [key: string]: components["schemas"]["telemetry_format"];
             };
         };
         amateur_telm_results_format: {
@@ -1169,8 +1169,8 @@ export interface components {
             mobile?: boolean;
         };
         listener_results_format: {
-            serial?: {
-                datetime?: components["schemas"]["listener"];
+            [key: string]: {
+                [key: string]: components["schemas"]["listener"];
             };
         };
         /** @example {

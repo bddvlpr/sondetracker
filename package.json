@@ -15,7 +15,7 @@
     "format": "prettier --write . && eslint . --fix",
     "test:integration": "playwright test",
     "test:unit": "vitest",
-    "struct": "openapi-typescript -o src/lib/server/api/specification.ts"
+    "struct": "openapi-typescript -o src/lib/api/specification.ts"
   },
   "devDependencies": {
     "@playwright/test": "^1.28.1",
@@ -25,6 +25,7 @@
     "@types/eslint": "^9.6.0",
     "@types/leaflet": "^1.9.12",
     "@types/leaflet.locatecontrol": "^0.74.5",
+    "@types/paho-mqtt": "^1.0.10",
     "autoprefixer": "^10.4.20",
     "daisyui": "^4.12.10",
     "eslint": "^9.0.0",
@@ -37,6 +38,7 @@
     "lucide-svelte": "^0.437.0",
     "openapi-fetch": "^0.12.0",
     "openapi-typescript": "^7.4.0",
+    "paho-mqtt": "^1.1.0",
     "prettier": "^3.1.1",
     "prettier-plugin-svelte": "^3.1.2",
     "prettier-plugin-tailwindcss": "^0.6.6",

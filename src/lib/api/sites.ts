@@ -1,6 +1,6 @@
 import api from '.';
 
-export const getStations = async () => {
+export const fetchSites = async () => {
   const { data, error } = await api.GET('/sites');
 
   if (error) {

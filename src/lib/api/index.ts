@@ -1,6 +1,6 @@
 import createClient from 'openapi-fetch';
 
-import type { paths } from './specification';
+import type { components, paths } from './specification';
 
 export default createClient<paths>({
   baseUrl: 'https://api.v2.sondehub.org',
@@ -8,3 +8,6 @@ export default createClient<paths>({
     'User-Agent': 'Sondetracker'
   }
 });
+
+export type Listener = components['schemas']['listener'];
+export type Site = components['schemas']['site'];

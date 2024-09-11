@@ -6,6 +6,8 @@
   import Radio from 'lucide-svelte/icons/radio';
 
   import '../app.pcss';
+  import { refreshListeners, refreshSites } from '$lib/telemetry.svelte';
+  import { connectSocket } from '$lib/socket.svelte';
 
   const anchors = [
     {
@@ -31,6 +33,12 @@
   ];
 
   const { children } = $props();
+
+  $effect(() => {
+    refreshListeners();
+    refreshSites();
+    connectSocket();
+  });
 </script>
 
 <div class="flex h-full flex-col">

@@ -1,12 +1,10 @@
 <script lang="ts">
   import Map from '$lib/components/map.svelte';
-  import StationMarkers from '$lib/components/markers/station.svelte';
-
-  const { data } = $props();
+  import SiteMarkers from '$lib/components/markers/sites.svelte';
+  import ListenerMarkers from '$lib/components/markers/listeners.svelte';
 </script>
 
 <Map geolocate={true}>
-  {#await data.stations then stations}
-    <StationMarkers {stations} />
-  {/await}
+  <ListenerMarkers />
+  <!-- <SiteMarkers /> -->
 </Map>

@@ -61,6 +61,6 @@ export default [
     }
   },
   {
-    ignores: ['build/', '.svelte-kit/', 'dist/', 'src/lib/server/api/specification.ts']
+    ignores: ['build/', '.svelte-kit/', 'dist/', 'src/lib/api/specification.ts']
   }
 ];

@@ -1140,7 +1140,7 @@ export interface components {
             uploader_antenna?: string;
         };
         sonde_query_results_format: {
-            serial?: {
+            [key: string]: {
                 [key: string]: components["schemas"]["telemetry_format"];
             };
         };

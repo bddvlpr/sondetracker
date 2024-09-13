@@ -2,7 +2,7 @@ import api from '.';
 
 export const fetchListeners = async () => {
   const { data, error } = await api.GET('/listeners/telemetry', {
-    params: { query: { duration: '1d' } }
+    params: { query: { duration: '3h' } }
   });
 
   if (error) {

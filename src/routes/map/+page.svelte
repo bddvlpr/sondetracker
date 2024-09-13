@@ -1,10 +1,12 @@
 <script lang="ts">
+  import ListenersLayer from '$lib/components/layers/listeners.svelte';
+  import SitesLayer from '$lib/components/layers/sites.svelte';
+  import SondesLayer from '$lib/components/layers/sondes.svelte';
   import Map from '$lib/components/map.svelte';
-  import ListenerMarkers from '$lib/components/markers/listeners.svelte';
-  import SiteMarkers from '$lib/components/markers/sites.svelte';
 </script>
 
-<Map geolocate={true}>
-  <ListenerMarkers />
-  <SiteMarkers />
+<Map geolocate={true} scale={true}>
+  <ListenersLayer />
+  <SitesLayer />
+  <SondesLayer />
 </Map>

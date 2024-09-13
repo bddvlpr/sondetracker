@@ -1,6 +1,6 @@
 <script lang="ts">
   import Map from '$lib/components/map.svelte';
-  import { getLatLng } from '$lib/leaflet';
+  import { parseLatLng } from '$lib/leaflet';
   import { getSites } from '$lib/telemetry.svelte';
   import { CircleMarker } from 'svelte-leafletjs';
 
@@ -29,7 +29,7 @@
       </thead>
       <tbody>
         {#each elements as [id, { station_name, position }]}
-          {@const latLng = getLatLng(position ?? [0, 0])}
+          {@const latLng = parseLatLng(position ?? [0, 0])}
           <tr>
             <td>
               #{id}
@@ -37,7 +37,14 @@
             <td>
               <div class="avatar">
                 <div class="h-48 w-48">
-                  <Map center={latLng} zoom={12} zoomControl={false}>
+                  <Map
+                    options={{
+                      attributionControl: false,
+                      center: latLng,
+                      zoom: 12,
+                      zoomControl: false
+                    }}
+                  >
                     <CircleMarker radius={7} {latLng} />
                   </Map>
                 </div>
@@ -61,12 +68,12 @@
     </table>
   </div>
 {/key}
-<div class="w-fit mx-auto">
+<div class="mx-auto w-fit">
   <div>
     <div class="join">
-      <button onclick={() => page--} disabled={page <= 0} class="join-item btn">«</button>
-      <button class="join-item btn">Page {page + 1}</button>
-      <button onclick={() => page++} class="join-item btn">»</button>
+      <button class="btn join-item" disabled={page <= 0} onclick={() => page--}>«</button>
+      <button class="btn join-item">Page {page + 1}</button>
+      <button class="btn join-item" onclick={() => page++}>»</button>
     </div>
   </div>
 </div>

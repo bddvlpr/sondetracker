@@ -12,3 +12,10 @@ export default createClient<paths>({
 export type Listener = components['schemas']['listener'];
 export type Site = components['schemas']['site'];
 export type Sonde = components['schemas']['telemetry_format'];
+export type SondeTelemetry = Sonde & {
+  uploaders?: {
+    uploader_callsign: string;
+    frequency?: number;
+    snr?: number;
+  }[];
+};

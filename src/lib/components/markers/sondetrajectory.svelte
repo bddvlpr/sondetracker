@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Sonde } from '$lib/api';
+  import type { SondeTelemetry } from '$lib/api';
   import type { History } from '$lib/history';
   import type { LatLngExpression } from 'leaflet';
 
@@ -8,7 +8,7 @@
   const {
     history
   }: {
-    history: History<Sonde>;
+    history: History<SondeTelemetry>;
   } = $props();
 
   let latLngs = $derived(

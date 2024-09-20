@@ -1,4 +1,4 @@
-import type { Listener, Site, Sonde } from './api';
+import type { Listener, Site, Sonde, SondeTelemetry } from './api';
 
 import { fetchListeners } from './api/listeners';
 import { fetchSites } from './api/sites';
@@ -6,7 +6,9 @@ import { fetchSondes } from './api/sondes';
 import { getLastEntry, type History } from './history';
 
 let listeners = $state<Listener[]>([]);
-let sondes = $state<{ [serial: string]: History<Sonde> }>({});
+let sondes = $state<{
+  [serial: string]: History<SondeTelemetry>;
+}>({});
 let sites = $state<{ [serial: string]: Site }>({});
 
 export const refreshListeners = async () => {
@@ -21,7 +23,6 @@ export const refreshSondes = async () => {
 
 export const refreshSonde = async (serial: string) => {
   const fetchedSonde = await fetchSondes(serial);
-  console.log('refreshing sonde', serial);
   sondes[serial] = fetchedSonde[serial];
 };
 
@@ -45,11 +46,28 @@ export const updateListener = (listener: Listener) => {
 
 export const updateSonde = (sonde: Sonde) => {
   const { serial, datetime } = sonde;
+  const stamp = new Date(datetime).toISOString();
   if (sondes[serial]) {
-    if (!sondes[serial][datetime]) {
-      sondes[serial][datetime] = sonde;
+    const { uploader_callsign, frequency, snr } = sonde;
+    if (!sondes[serial][stamp]) {
+      sondes[serial][stamp] = {
+        ...sonde,
+        uploaders: [
+          {
+            uploader_callsign,
+            frequency,
+            snr
+          }
+        ]
+      };
+    } else {
+      sondes[serial][stamp].uploaders?.push({
+        uploader_callsign,
+        frequency,
+        snr
+      });
     }
   } else {
-    sondes[serial] = { [datetime]: sonde };
+    sondes[serial] = { [stamp]: sonde };
   }
 };

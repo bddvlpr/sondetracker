@@ -6,7 +6,7 @@ import { fetchSondes } from './api/sondes';
 import { getLastEntry, type History } from './history';
 
 let listeners = $state<Listener[]>([]);
-let sondes = $state<{
+const sondes = $state<{
   [serial: string]: History<SondeTelemetry>;
 }>({});
 let sites = $state<{ [serial: string]: Site }>({});
@@ -16,8 +16,8 @@ export const refreshListeners = async () => {
   listeners = Object.values(fetchedListeners).map((serial) => getLastEntry<Listener>(serial));
 };
 
-export const refreshSondes = async () => {
-  const fetchedSondes = await fetchSondes();
+export const refreshSondes = async (serial?: string) => {
+  const fetchedSondes = await fetchSondes(serial);
   Object.values(fetchedSondes).forEach((telemetry) => {
     Object.values(telemetry).forEach(updateSonde);
   });

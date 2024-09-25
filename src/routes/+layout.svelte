@@ -1,11 +1,8 @@
 <script lang="ts">
   import Tooltip from '$lib/components/tooltip.svelte';
-  import { connectSocket } from '$lib/socket.svelte';
-  import { refreshListeners, refreshSites, refreshSondes } from '$lib/telemetry.svelte';
-  import Antenna from 'lucide-svelte/icons/antenna';
+  import '$lib/socket.svelte';
   import ArrowUpFromLine from 'lucide-svelte/icons/arrow-up-from-line';
   import Map from 'lucide-svelte/icons/map';
-  import Radio from 'lucide-svelte/icons/radio';
 
   import '../app.pcss';
 
@@ -16,30 +13,13 @@
       href: '/map'
     },
     {
-      tooltip: 'Sondes',
-      component: Radio,
-      href: '/sondes'
-    },
-    {
       tooltip: 'Sites',
       component: ArrowUpFromLine,
       href: '/sites'
-    },
-    {
-      tooltip: 'Stations',
-      component: Antenna,
-      href: '/stations'
     }
   ];
 
   const { children } = $props();
-
-  $effect(() => {
-    refreshListeners();
-    refreshSondes();
-    refreshSites();
-    connectSocket();
-  });
 </script>
 
 <div class="flex h-full flex-col">

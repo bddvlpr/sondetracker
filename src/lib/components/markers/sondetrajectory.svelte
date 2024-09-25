@@ -12,7 +12,9 @@
   } = $props();
 
   let latLngs = $derived(
-    Object.values(history).map(({ lat, lon }) => [lat, lon] satisfies LatLngExpression)
+    Object.values(history)
+      .sort((a, b) => new Date(b.datetime).getTime() - new Date(a.datetime).getTime())
+      .map(({ lat, lon }) => [lat, lon] satisfies LatLngExpression)
   );
 </script>
 

@@ -18,12 +18,9 @@ export const refreshListeners = async () => {
 
 export const refreshSondes = async () => {
   const fetchedSondes = await fetchSondes();
-  sondes = fetchedSondes;
-};
-
-export const refreshSonde = async (serial: string) => {
-  const fetchedSonde = await fetchSondes(serial);
-  sondes[serial] = fetchedSonde[serial];
+  Object.values(fetchedSondes).forEach((telemetry) => {
+    Object.values(telemetry).forEach(updateSonde);
+  });
 };
 
 export const refreshSites = async () => {
@@ -71,3 +68,7 @@ export const updateSonde = (sonde: Sonde) => {
     sondes[serial] = { [stamp]: sonde };
   }
 };
+
+refreshListeners();
+refreshSondes();
+refreshSites();
